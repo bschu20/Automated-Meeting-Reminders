@@ -1,0 +1,85 @@
+/*var students={
+    'Brandon':{
+      'email':'<insert email>',
+      'meetingDate':'Thursday, August 2nd',
+      'meetingTime': '6:30'
+    },
+    'Raysa':{
+      'email':'<insert email>',
+      'meetingDate':'Thursday, August 2nd',
+      'meetingTime':'7:30'
+    } 
+  }*/
+
+
+function loopStudents(){
+  counter=0
+  
+  for(const item in students){
+    Logger.log('Item is: '+item)
+   
+    for(const item2 in students[item]){
+      Logger.log('Item2 is: '+ String(item2))
+      Logger.log(students[item][item2])
+      if (item2=='email'){
+        var email=students[item][item2]
+      }
+      if(item2=='meetingDate'){
+        var meetingDate=students[item][item2]
+      }
+      else{
+        var meetingTime=students[item][item2]
+      }
+      counter+=1
+      Logger.log('Counter is: '+String(counter))
+    }
+    
+
+    //you should call 'sendEmails()' from here and pass into it the above variables to be used within the email 
+    sendEmails(item,email,meetingDate,meetingTime)
+    
+  }
+  
+   
+
+}
+
+ 
+
+function sendEmails(name,email,meetingDate,meetingTime) {
+ 
+  var emailAddress = email;
+  var subject = 'Meeting Reminder';
+  var message = '<body>'+'<br>'+
+  '<img src="https://images.squarespace-cdn.com/content/v1/6229359c5952ee1bca70485b/1079c780-8a5c-430f-bf5d-3d2d4870c449/new+Logo.jpg?format=750w">'+
+  '<br>'+
+  '<br>'+
+  "<p>  Hi "+ name + ','+ '<br>' + " This is a reminder about our scheduled meeting. If for any reason you can't meet or need to reschedule, then please give me at least 24 hours notice. Thank you. </p>"+
+  '<br>'+
+  '<p>  <b>Meeting Date: </b>' + meetingDate  + '</p>'+
+  '<p> <b>Meeting Time: </b>'+ meetingTime +   '</p>'+
+  '<br>'+
+  '<br>'+
+  '<br>'+
+  "<p style='color:red;'> Please pass along my information! You'll get 50% off a single session for every new student you refer who begins tutoring with me.  </p>"+
+  '</body>'
+ MailApp.sendEmail(emailAddress, subject, message, {
+    htmlBody: message,
+    
+    
+  });
+   
+}
+
+
+
+//loopStudents()
+
+
+
+
+
+
+
+
+  
